@@ -2,8 +2,6 @@ class Solution {
 public:
     vector<vector<string>> displayTable(vector<vector<string>>& orders) {
         unordered_map<int, unordered_map<string, int>> table;
-        unordered_map<int, unordered_map<string, int> >::iterator itr; 
-        unordered_map<string, int>::iterator ptr;
         set<string> foodItem;
         set<int> tableNumber;
         for (auto order: orders) {
@@ -28,8 +26,8 @@ public:
         for (auto number: tableNo) {
             vector<string> row;
             row.push_back(to_string(number));
-            for (auto f: food) {
-                row.push_back(to_string(table[number][f]));                
+            for (auto item: food) {
+                row.push_back(to_string(table[number][item]));                
             }
             result.push_back(row);
         }

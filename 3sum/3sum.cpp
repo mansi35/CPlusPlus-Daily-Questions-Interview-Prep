@@ -10,10 +10,7 @@ public:
             }
             int sum = nums[left] + nums[right];
             if (sum == target) {
-                vector<int> pair;
-                pair.push_back(nums[left]);
-                pair.push_back(nums[right]);
-                pairs.push_back(pair);
+                pairs.push_back({ nums[left], nums[right] });
                 left++;
                 right--;
             } else if (sum < target) {

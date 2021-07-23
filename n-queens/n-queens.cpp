@@ -1,31 +1,6 @@
 class Solution {
 public:
-    bool canPlace(vector<string> rows, int n, int i, int j) {
-        for(int row = 0; row < n; row++){
-            if(rows[row][j] == 'Q'){
-                return false;
-            }
-        }
-        int x = i;
-        int y = j;
-        while (x >= 0 && y >= 0) {
-            if (rows[x][y] == 'Q') {
-                return false;
-            }
-            x--;
-            y--;
-        }
-        x = i;
-        y = j;
-        while (x >= 0 && y < n) {
-            if (rows[x][y] == 'Q') {
-                return false;
-            }
-            x--;
-            y++;
-        }
-        return true;
-    }
+    bitset<9> col, d1, d2;
     
     void solveNQueensHelper(vector<string>& rows, vector<vector<string>>& result, int n, int i) {
         if ( i == n) {
@@ -33,10 +8,12 @@ public:
             return;
         }
         for (int pos = 0; pos < n; pos++) {
-            if (canPlace(rows, n, i, pos)) {
+            if (!col[pos] and !d1[i-pos+n-1] and !d2[i+pos]) {
+                col[pos] = d1[i-pos+n-1] = d2[i+pos] = 1;
                 rows[i][pos] = 'Q';
                 solveNQueensHelper(rows, result, n, i+1);
                 rows[i][pos] = '.';
+                col[pos] = d1[i-pos+n-1] = d2[i+pos] = 0;
             }
         }
     }

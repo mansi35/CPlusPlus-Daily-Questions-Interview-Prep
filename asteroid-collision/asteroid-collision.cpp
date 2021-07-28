@@ -21,13 +21,11 @@ public:
                 i++;
             }
         }
-        int size = s.size();
-        int* ans = new int[s.size()];
+        vector<int> ans(s.size());
         for (int i = s.size() - 1; i >= 0; i--) {
             ans[i] = s.top();
             s.pop();
         }
-        vector<int> v(ans, ans+size);
-        return v;
+        return ans;
     }
 };

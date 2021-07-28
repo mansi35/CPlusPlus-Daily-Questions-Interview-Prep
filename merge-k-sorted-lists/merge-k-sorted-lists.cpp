@@ -10,7 +10,7 @@
  */
 class Solution {
 public:
-    typedef pair<int, pair<int, ListNode*>> node;
+    typedef pair<int, ListNode*> node;
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         if (lists.size() == 0)
             return NULL;
@@ -18,23 +18,20 @@ public:
         for (int i = 0; i < lists.size(); i++) {
             ListNode* head = lists[i];
             if (head != NULL)
-                pq.push({head->val, {i, head}});
+                pq.push({head->val, head});
         }
         ListNode* result = new ListNode();
+        ListNode* tail = result;
         while (!pq.empty()) {
             node current = pq.top();
             pq.pop();
-            int listIndex = current.second.first;
-            ListNode* listNode = current.second.second;
+            ListNode* listNode = current.second;
             ListNode* element = new ListNode(current.first);
-            ListNode* tail = result;
-            while (tail->next != NULL) {
-                tail = tail -> next;
-            }
             tail->next = element;
+            tail = tail->next;
             
             if (listNode->next != NULL) {
-                pq.push(make_pair(listNode->next->val, make_pair(listIndex, listNode->next)));
+                pq.push(make_pair(listNode->next->val, listNode->next));
             }
         }
         return result->next;

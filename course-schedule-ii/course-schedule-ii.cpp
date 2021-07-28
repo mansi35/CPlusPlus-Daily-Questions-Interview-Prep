@@ -6,10 +6,7 @@ public:
         for (auto edge: prerequisites) {
             umap[edge[1]].push_back(edge[0]);
         }
-        int* indegree = new int[numCourses];
-        for (int i = 0; i < numCourses; i++) {
-            indegree[i] = 0;
-        }
+        vector<int> indegree(numCourses, 0);
         
         for (auto list: umap) {
             for (int i: list.second) {

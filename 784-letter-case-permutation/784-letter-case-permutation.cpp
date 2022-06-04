@@ -6,14 +6,14 @@ public:
         return allPerms;
     }
     
-    void letterCasePermutationHelper(string s, vector<string> &allPerms, int i) {
+    void letterCasePermutationHelper(string s, vector<string>& allPerms, int i) {
         if (i == s.length()) {
             allPerms.push_back(s);
-            return;
+            return ;
         }
-        if (isdigit(s[i])) {
+        if (isdigit(s[i]))
             letterCasePermutationHelper(s, allPerms, i+1);
-        } else {
+        else {
             s[i] = tolower(s[i]);
             letterCasePermutationHelper(s, allPerms, i+1);
             s[i] = toupper(s[i]);

@@ -22,20 +22,12 @@ public:
     bool findTarget(TreeNode* root, int k) {
         vector<int> nums;
         inorder(nums, root);
-        int left = 0, right = nums.size() - 1;
-        while (left < right) {
-            if (left != 0 and nums[left] == nums[left-1]) {
-                left++;
-                continue;
-            }
-            int sum = nums[left] + nums[right];
-            if (sum == k) {
+        unordered_map<int, int> umap;
+        for (int i = nums.size() - 1; i >= 0; i--) {
+            if (umap.find(k - nums[i]) != umap.end()) {
                 return true;
             }
-            else if (sum < k)
-                left++;
-            else
-                right--;
+            umap[nums[i]] = i + 1;
         }
         return false;
     }

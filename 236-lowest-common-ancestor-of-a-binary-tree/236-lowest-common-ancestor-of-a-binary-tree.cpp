@@ -18,8 +18,6 @@ public:
         int right = recurseTree(curNode->right, p, q) ? 1 : 0;
         int mid = (curNode == p || curNode == q) ? 1 : 0;
         
-        // bool isLCA = (mid && left) || (mid && right) || (left && right);
-        
         if (mid + left + right >= 2)
             ans = curNode;
         
